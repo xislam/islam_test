@@ -13,6 +13,9 @@ class Employers(models.Model):
     gender = models.CharField(max_length=30, choices=GENDER, verbose_name="Пол")
     department = models.ForeignKey('Department', verbose_name="Отдел",
                                    related_name='departments', on_delete=models.CASCADE)
+    programming_lan = models.ForeignKey('ProgrammingLanguage',
+                                        verbose_name="Язык программирования",
+                                        on_delete=models.CASCADE, related_name='programming')
 
     def __str__(self):
         return self.name.__str__()

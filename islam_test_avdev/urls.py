@@ -16,6 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from employee.views import EmployersList, EmployersCreateView, EmployersUpdateView, EmployersDeleteView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('employers_list/', EmployersList.as_view(), name='employers'),
+    path('employer_add/', EmployersCreateView.as_view(), name='employer_add'),
+    path('employer_add/<int:pk>/', EmployersUpdateView.as_view(), name='employer_update'),
+    path('employer_delete/<int:pk>/', EmployersDeleteView.as_view(), name='employer_delete'),
+
 ]

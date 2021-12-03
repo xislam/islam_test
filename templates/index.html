@@ -1,0 +1,48 @@
+{% extends 'dase.html' %}
+{% block content %}
+    <section class="content">
+
+        <div class="d-flex justify-content-center">
+            <h3 class="content">Список сотрудников</h3>
+        </div>
+        <div>
+            {% for message in messages %}
+                <div class="box-header with-border">
+                    <h4 class="box-title">{{ message }}</h4>
+                </div>
+            {% endfor %}
+            <form action="{% url 'employer_add' %}">
+                <button type="submit"
+                        class="waves-effect waves-light btn btn-rounded btn-default mb-5">
+                    Добавить
+                </button>
+            </form>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Имя</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Возраст</th>
+                <th scope="col">Отдел</th>
+                <th scope="col">Язык</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for employer in employers %}
+                <tr>
+                    <td>{{ employer.name }}</td>
+                    <td>{{ employer.surname }}</td>
+                    <td>{{ employer.age }}</td>
+                    <td>{{ employer.department.name }} {{ employer.department.floor }}</td>
+                    <td>{{ employer.programming_lan }}</td>
+                    <td>
+                        <a href="{% url 'employer_update' pk=employer.pk %}">Изменить</a><br>
+                        <a href="{% url 'employer_delete' employer.pk %}">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
